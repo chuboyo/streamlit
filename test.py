@@ -162,6 +162,7 @@ class VideoTransformer(VideoTransformerBase):
         self.bottom_right = (self.width - self.w, self.height - self.h)
 
     def transform(self, frame):
+        streaming  = True
         if streaming:
             img = frame.to_ndarray(format="bgr24")
             original = img.copy()
