@@ -190,7 +190,6 @@ class VideoTransformer(VideoTransformerBase):
             return img
 
 muted = st.checkbox("Mute")
-webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration={ "iceServers": 
-[{"urls": ["stun:stun2.l.google.com:19302"]}]},video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
+webrtc_streamer(key="example", rtc_configuration={ "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
         autoPlay=True, controls=False, muted=muted
     ))
