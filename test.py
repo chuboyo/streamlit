@@ -1,7 +1,7 @@
 import cv2, imutils
 import numpy as np
 from skimage import exposure, img_as_ubyte
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, VideoHTMLAttributes, RTCConfiguration
+from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, VideoHTMLAttributes, RTCConfiguration, WebRtcMode
 import streamlit as st
 import cloudinary, cloudinary.uploader
 
@@ -189,7 +189,7 @@ class VideoTransformer(VideoTransformerBase):
             return img
 
 muted = st.checkbox("Mute")
-webrtc_streamer(key="example", rtc_configuration=RTCConfiguration(
+webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration=RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
 ),video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
         autoPlay=True, controls=False, muted=muted
