@@ -190,7 +190,8 @@ class VideoTransformer(VideoTransformerBase):
 
 muted = st.checkbox("Mute")
 webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration={  # Add this config
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        "iceServers": [{ urls: "turn:openrelay.metered.ca:80",username: "openrelayproject",
+      credential: "openrelayproject"}]
     },video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
         autoPlay=True, controls=False, muted=muted
     ))
