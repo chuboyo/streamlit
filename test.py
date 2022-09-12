@@ -1,7 +1,7 @@
 import cv2, imutils
 import numpy as np
 from skimage import exposure, img_as_ubyte
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, VideoHTMLAttributes
+from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, VideoHTMLAttributes, RTCConfiguration
 import streamlit as st
 import cloudinary, cloudinary.uploader
 
@@ -148,9 +148,9 @@ def four_point_transform(image, pts):
 	# return the warped image
 	return warped
 
-RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-)
+# RTC_CONFIGURATION = RTCConfiguration(
+#     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+# )
 
 class VideoTransformer(VideoTransformerBase):
     def __init__(self):
@@ -189,6 +189,8 @@ class VideoTransformer(VideoTransformerBase):
             return img
 
 muted = st.checkbox("Mute")
-webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration=RTC_CONFIGURATION,video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
+webrtc_streamer(key="example", rtc_configuration=RTCConfiguration(
+    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+),video_transformer_factory=VideoTransformer, video_html_attrs=VideoHTMLAttributes(
         autoPlay=True, controls=False, muted=muted
     ))
