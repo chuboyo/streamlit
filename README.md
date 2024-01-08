@@ -1,6 +1,6 @@
 # STREAMLIT ID CARD EDGE DETECTION AND CAPTURE  🆔 📸
 
-Streamlit app to detect id card edges and capture id card after edge detection.
+This repo contains code to run a streamlit app to detect id card edges and capture id card after edge detection.
 
 To run code from this repo:
 
